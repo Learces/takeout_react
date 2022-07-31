@@ -59,14 +59,22 @@
 }
 
 .phone-input {
-    flex-grow: 1;
+    @media screen and (max-width:300px) {
+        /* 该数据有实际测试得出，没有适应性，不要改！！！ */
+        width: 135px;
+    }
+
+    @media screen and (min-width:300px) {
+        flex-grow: 1;
+    }
+
     @include real-input-reset();
 }
 
 /* “获取验证码” */
 .getVerificationCode-button {
-    margin-left: 16px;
     border: none;
+    margin-right: 10px;
     background-color: transparent;
     color: loginPage.$gray-color;
 }
