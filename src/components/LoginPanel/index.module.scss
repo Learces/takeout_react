@@ -59,21 +59,19 @@
 }
 
 .phone-input {
-    @media screen and (max-width:300px) {
-        /* 该数据有实际测试得出，没有适应性，不要改！！！ */
-        width: 135px;
-    }
-
-    @media screen and (min-width:300px) {
-        flex-grow: 1;
-    }
-
+    /* 让其可以无限度缩小 */
+    min-width: 0px;
+    /* 保证整个view-input被填满，避免改变”获取验证码“的右边距 */
+    flex-grow: 1;
     @include real-input-reset();
 }
 
 /* “获取验证码” */
 .getVerificationCode-button {
     border: none;
+    padding: 0;
+    /* 最多容忍两行，不能容忍一字一行显示，撑大view-input */
+    min-width: 45px;
     margin-right: 10px;
     background-color: transparent;
     color: loginPage.$gray-color;
