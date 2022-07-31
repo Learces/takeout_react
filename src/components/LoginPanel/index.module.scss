@@ -70,7 +70,7 @@
 .getVerificationCode-button {
     border: none;
     padding: 0;
-    /* 最多容忍两行，不能容忍一字一行显示，撑大view-input */
+    /* 最多容忍文字两行排版，不能容忍一字一行显示，撑大view-input */
     min-width: 45px;
     margin-right: 10px;
     background-color: transparent;

@@ -3,7 +3,9 @@
 
 /* 页面 */
 .page {
+    /* 最宽300px，最窄168px，太小直接缩小 */
     max-width: 300px;
+    min-width: 168px;
     margin: 0 auto;
     @include global.overlapfix();
 }
