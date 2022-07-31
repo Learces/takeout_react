@@ -70,8 +70,13 @@
 .getVerificationCode-button {
     border: none;
     padding: 0;
-    /* 最多容忍文字两行排版，不能容忍一字一行显示，撑大view-input */
-    min-width: 45px;
+
+    @media screen and (max-width:300px) {
+        /* 只允许两种排版：“获取验证码”和“获取\n验证码” */
+        width: 45px;
+        min-width: 45px;
+    }
+
     margin-right: 10px;
     background-color: transparent;
     color: loginPage.$gray-color;

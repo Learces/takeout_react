@@ -6,6 +6,8 @@
     /* 最宽300px，最窄168px，太小直接缩小 */
     max-width: 300px;
     min-width: 168px;
+    /* 给极端窄情况留有一定缝隙 */
+    padding: 0 10px;
     margin: 0 auto;
     @include global.overlapfix();
 }
