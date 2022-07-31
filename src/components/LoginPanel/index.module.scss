@@ -1,0 +1,93 @@
+@use "../../styles/global";
+@use "../../styles/loginPage";
+
+/* 登录方式切换栏 */
+.tabs {
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin: 0 0 15px;
+    list-style: none;
+}
+
+/* 登录方式 */
+.tab-base {
+    &:first-child {
+        margin-left: 10px;
+    }
+
+    &:last-child {
+        margin-right: 10px;
+    }
+}
+
+.tab-inactive {
+    color: #525252;
+}
+
+.tab-active {
+    color: global.$theme-color;
+    font-weight: bold;
+    text-decoration: underline;
+    text-underline-offset: 5px;
+}
+
+/* 手机号输入框 */
+/* 视觉上的输入框边框样式 */
+@mixin view-input-border {
+    box-sizing: border-box;
+    overflow: hidden;
+    border: 1px solid loginPage.$gray-color;
+    border-radius: global.$radius;
+}
+
+/* 重设实际input元素的样式 */
+@mixin real-input-reset {
+    height: 44px;
+    border: none;
+    font-size: 16px;
+    line-height: 44px;
+    text-indent: 5px;
+    outline: none;
+}
+
+/* 手机输入框 */
+.phone {
+    display: flex;
+    align-items: center;
+    @include view-input-border();
+}
+
+.phone-input {
+    flex-grow: 1;
+    @include real-input-reset();
+}
+
+/* “获取验证码” */
+.getVerificationCode-button {
+    margin-left: 16px;
+    border: none;
+    background-color: transparent;
+    color: loginPage.$gray-color;
+}
+
+/* 验证码输入框 */
+.verificationCode {
+    width: 100%;
+    margin-top: 15px;
+    @include real-input-reset();
+    @include view-input-border();
+}
+
+/* “温馨提示” */
+.tip {
+    display: block;
+    margin-top: 20px;
+    color: loginPage.$gray-color;
+    font-size: 14px;
+}
+
+/* “《用户服务协议》” */
+.agreement {
+    color: global.$theme-color;
+}

@@ -1,60 +1,51 @@
 @use "../../styles/global";
 @use "../../styles/loginPage";
 
-/* 提示信息相关样式 */
-$ignore-color: #a9a9a9;
-$ignore-fontSize: 14px;
-/* 页面统一圆角 */
-$radius: 3px;
-
-@mixin ignore-text {
-    color: $ignore-color;
-    font-size: $ignore-fontSize;
-}
-
+/* 页面 */
 .page {
+    width: 300px;
+
+    @media screen and (max-width:300px) {
+        width: 230px;
+    }
+
     margin: 0 auto;
-    @include loginPage.view-width();
     @include global.overlapfix();
 }
 
+/* 回退按钮 */
 .back {
     position: fixed;
     top: 10px;
     left: 10px;
-    color: $ignore-color;
+    color: loginPage.$gray-color;
 }
 
+/* “硅谷外卖” */
 .title {
     margin: 60px 0 40px;
+    color: global.$theme-color;
+    font-size: 38px;
     text-align: center;
-    color: global.$theme-color;
 }
 
-.tip {
-    @include ignore-text();
-}
-
-.agreement {
-    text-decoration: none;
-    color: global.$theme-color;
-}
-
+/* 登录按钮 */
 .button {
     display: block;
     width: 100%;
     height: 40px;
     border: none;
     margin: 36px auto 20px;
-    background-color: #4cd96f;
-    font-size: 17px;
+    background-color: global.$theme-color;
     color: #fff;
-    border-radius: $radius;
+    font-size: 17px;
+    border-radius: global.$radius;
 }
 
+/* “关于我们” */
 .about {
     display: block;
+    color: loginPage.$gray-color;
+    font-size: 14px;
     text-align: center;
-    text-decoration: none;
-    @include ignore-text();
 }

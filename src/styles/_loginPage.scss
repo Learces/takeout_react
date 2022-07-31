@@ -1,10 +1,2 @@
-/* 屏幕视区宽度 */
-@mixin view-width {
-    /* 屏幕宽度大于等于300px */
-    width: 300px;
-
-    /* 屏幕宽度小于300px */
-    @media screen and (max-width:300px) {
-        width: 230px;
-    }
-}
+/* 统一灰色 */
+$gray-color: #a9a9a9;

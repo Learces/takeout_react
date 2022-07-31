@@ -1,5 +1,7 @@
 /* 应用主题颜色 */
 $theme-color: #02a774;
+/* 统一圆角半径 */
+$radius: 4px;
 
 /* 外边距重叠修复 */
 @mixin overlapfix {
@@ -16,4 +18,23 @@ $theme-color: #02a774;
       display: table;
       clear: both;
    }
+}
+
+/* 弹性居中 */
+@mixin flex-center {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+/* 正方形 */
+@mixin square($side) {
+   width: $side;
+   height: $side;
+}
+
+/* 圆形 */
+@mixin circular($side) {
+   @include square($side);
+   border-radius: 50%;
 }
