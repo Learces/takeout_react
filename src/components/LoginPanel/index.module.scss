@@ -1,6 +1,41 @@
 @use "../../styles/global";
 @use "../../styles/loginPage";
 
+/* 灰色带圆角边框 */
+$gray-border: 1px solid loginPage.$gray-color;
+
+/* 视觉上的输入框样式 */
+@mixin view-input-box {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    overflow: hidden;
+    border: $gray-border;
+    border-radius: global.$radius;
+}
+
+/* 重设实际input元素的样式 */
+@mixin real-input-reset($isScalable: false) {
+    height: 44px;
+    border: none;
+    font-size: 16px;
+    line-height: 44px;
+    text-indent: 5px;
+    outline: none;
+
+    /* 所谓可升缩性，就是在display:flex下面空间足够时伸长，不够时缩小 */
+    @if $isScalable {
+        min-width: 0;
+        flex-grow: 1;
+    }
+}
+
+/* 当空间不足时，不予缩小 */
+@mixin fixed-width($width) {
+    width: $width;
+    min-width: $width;
+}
+
 /* 登录方式切换栏 */
 .tabs {
     display: flex;
@@ -32,49 +67,23 @@
     text-underline-offset: 5px;
 }
 
-/* 手机号输入框 */
-/* 视觉上的输入框边框样式 */
-@mixin view-input-border {
-    box-sizing: border-box;
-    overflow: hidden;
-    border: 1px solid loginPage.$gray-color;
-    border-radius: global.$radius;
-}
-
-/* 重设实际input元素的样式 */
-@mixin real-input-reset {
-    height: 44px;
-    border: none;
-    font-size: 16px;
-    line-height: 44px;
-    text-indent: 5px;
-    outline: none;
-}
-
 /* 手机输入框 */
 .phone {
-    display: flex;
-    align-items: center;
-    @include view-input-border();
+    @include view-input-box();
 }
 
 .phone-input {
-    /* 让其可以无限度缩小 */
-    min-width: 0px;
-    /* 保证整个view-input被填满，避免改变”获取验证码“的右边距 */
-    flex-grow: 1;
-    @include real-input-reset();
+    @include real-input-reset(true);
 }
 
 /* “获取验证码” */
-.getVerificationCode-button {
+.getPhoneVerificationCode-button {
     border: none;
     padding: 0;
 
     @media screen and (max-width:300px) {
         /* 只允许两种排版：“获取验证码”和“获取\n验证码” */
-        width: 45px;
-        min-width: 45px;
+        @include fixed-width(45px);
     }
 
     margin-right: 10px;
@@ -83,11 +92,11 @@
 }
 
 /* 验证码输入框 */
-.verificationCode {
+.phoneVerificationCode {
     width: 100%;
     margin-top: 15px;
     @include real-input-reset();
-    @include view-input-border();
+    @include view-input-box();
 }
 
 /* “温馨提示” */
@@ -101,4 +110,98 @@
 /* “《用户服务协议》” */
 .agreement {
     color: global.$theme-color;
+}
+
+/* “手机/邮箱/用户名登录”输入框 */
+.username {
+    width: 100%;
+    @include real-input-reset();
+    @include view-input-box();
+}
+
+/* “密码”输入框 */
+.password {
+    margin-top: 15px;
+    @include view-input-box();
+}
+
+.password-input {
+    &::-ms-reveal {
+        display: none;
+    }
+
+    @include real-input-reset(true);
+}
+
+/* 密码显示控件 */
+.displaySwitch {
+    overflow: hidden;
+    position: relative;
+    @include fixed-width(40px);
+    height: 20px;
+    outline: 1px solid loginPage.$gray-color;
+    margin-right: 10px;
+    border-radius: 10px;
+
+    &::before {
+        content: "";
+        display: block;
+        /* 伪元素无宽度，隐藏背景颜色 */
+        width: 0;
+        height: 20px;
+        border-radius: 10px;
+        background-color: global.$theme-color;
+        /* 关闭过度，该过度速度略慢于control，保证视觉上和control同步 */
+        transition: width .5s;
+    }
+}
+
+/* 控件激活状态 */
+.displaySwitch-active {
+    &::before {
+        width: 40px;
+        /* 打开过度，该过度速度略快于control，保证视觉上和control同步 */
+        transition: width .4s;
+    }
+
+}
+
+/* 控件控制器 */
+.displayControl {
+    box-sizing: border-box;
+    /* 脱离容器，给容器伪元素让位 */
+    position: absolute;
+    /* 修饰覆盖效果 */
+    top: 0;
+    left: -1px;
+    @include global.circular(20px);
+    border: $gray-border;
+    background-color: #fff;
+    transition: left .4s;
+}
+
+/* 控件控制器激活状态 */
+.displayControl-active {
+    top: 0;
+    left: 21px;
+    transition: left .5s;
+}
+
+
+/* 图片验证码输入框 */
+.imageVerificationCode {
+    margin-top: 15px;
+    @include view-input-box();
+}
+
+.imageVerificationCode-input {
+    @include real-input-reset(true);
+}
+
+/* 验证码图片 */
+.verificationCodeImage {
+    @include fixed-width(120px);
+    /* 效果修饰 */
+    height: 45px;
+    border-radius: 3px;
 }
