@@ -10,39 +10,30 @@ interface GetVerificationCodeButtonProps {
 const GetVerificationCodeButton: React.FC<GetVerificationCodeButtonProps> =
   React.memo(props => {
     const [countdown, setCountdown] = React.useState(props.countdown);
-    let intervalId: NodeJS.Timeout;
+    const [timer, setTimer] = React.useState<NodeJS.Timer>();
     const requestVerificationCode = () => {
-      intervalId = setInterval(() => {
-        /**
-         * 这里只能写函数写法，如果直接写setCountdown(countdown-1),那么定时器
-         * 处理函数会始终引用countdown=10。因为点击“获取验证码”只开启了一个定时
-         * 器，而这个定时器的handler会始终引用他被提交的时候的闭包值。当定时器执行
-         * 一次之后，下次渲染countdown会变成9，但是这并不是定时器handler引用的
-         * 值，定时器handler依然引用的是countdown=10。
-         */
+      const intervalId = setInterval(() => {
+        // 如果倒计时不为零，就继续倒计时，否则重置倒计时
         setCountdown(previous => {
-          if (previous) {
-            return previous - 1;
-          } else {
-            clearInterval(intervalId);
-            return props.countdown;
-          }
+          return previous ? previous - 1 : props.countdown;
         });
-        // setCountdown(countdown - 1); //要测试错误效果，打开注释的行，并注释上面的setCountdown
-        // console.log("内:" + countdown);
       }, 1000);
+      setTimer(intervalId);
     };
-    // console.log("外:" + countdown);
+
     React.useEffect(() => {
+      if (countdown === 0) {
+        clearInterval(timer);
+      }
       return () => {
-        clearInterval(intervalId);
+        clearInterval(timer);
       };
-      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
       <button
         onClick={
+          // 当前定时器不等于初始定时时间，说明有一个定时器正在运行，不允许重复点击
           countdown === props.countdown ? requestVerificationCode : undefined
         }
         className={styles["getPhoneVerificationCode-button"]}
