@@ -2,6 +2,8 @@
 $theme-color: #02a774;
 /* 统一圆角半径 */
 $radius: 4px;
+/* 最顶层 */
+$top-z-index: 1000;
 
 /* 外边距重叠修复 */
 @mixin overlapfix {
@@ -18,6 +20,12 @@ $radius: 4px;
       display: table;
       clear: both;
    }
+}
+
+/* 当空间不足时，不予缩小 */
+@mixin fixed-width($width) {
+   width: $width;
+   min-width: $width;
 }
 
 /* 弹性居中 */

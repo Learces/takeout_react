@@ -48,3 +48,23 @@
     font-size: 14px;
     text-align: center;
 }
+
+/* 模态对话框内容 */
+.message {
+    padding: 18px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 100;
+}
+
+/* 模态重试按钮 */
+.retry {
+    border: none;
+    border-top: 1px solid #eaeaea;
+    padding: 10px 0;
+    width: 100%;
+    background-color: transparent;
+    color: global.$theme-color;
+    letter-spacing: 5px;
+    font-size: 16px;
+}

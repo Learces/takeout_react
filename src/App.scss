@@ -9,3 +9,17 @@ body {
 a {
     text-decoration: none;
 }
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/*
+ 给App添加相对定位，是为了将App内的fixed定位现在App以内，
+ 防止干扰模态组件的定位。
+*/
+.app {
+    position: relative;
+}
