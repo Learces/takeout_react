@@ -1,0 +1,59 @@
+@use "../../styles/global";
+
+/* 导航栏 */
+.nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    /* 响应式属性 */
+    min-width: 200px;
+    padding: 5px 0;
+    border-top: 1px solid #f5f5f5;
+    background-color: #f5f5f5;
+    box-shadow: 0px 0px 2.2px rgba(0, 0, 0, 0.02),
+        0px 0px 5.3px rgba(0, 0, 0, 0.028),
+        0px 0px 10px rgba(0, 0, 0, 0.035),
+        0px 0px 17.9px rgba(0, 0, 0, 0.042),
+        0px 0px 33.4px rgba(0, 0, 0, 0.05),
+        0px 0px 80px rgba(0, 0, 0, 0.07);
+}
+
+/* li元素，响应式的 */
+.nav-item-wrapper {
+    @media screen and (max-width:380px) {
+        flex-basis: 25%;
+    }
+
+    @media screen and (min-width:380px) {
+        width: 95px;
+    }
+}
+
+/* NavLink元素 */
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    color: #999999;
+}
+
+/* NavLink活跃 */
+.nav-item--active {
+    color: global.$theme-color;
+}
+
+/* 导航图标 */
+.nav-item-icon {
+    font-size: 26px;
+}
+
+/* 导航项文字 */
+.nav-item-title {
+    font-size: 14px;
+}

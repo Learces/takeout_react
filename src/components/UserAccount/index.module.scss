@@ -1,0 +1,70 @@
+@use "../../styles/global";
+
+/* 组件整体样式 */
+.component {
+    display: flex;
+    align-items: center;
+    height: 95px;
+    border-top: 1px solid #fff;
+    background-color: global.$theme-color;
+}
+
+/* 头像容器样式 */
+.portrait-container {
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    /**
+    * 这你添加最小宽度是为了防止该盒子缩小，
+    * 因为后面.account的flex-basis的有限
+    * 级比width高，而且因为portrait-image
+    * 只占据80%的空间，所以会导致该盒子缩小
+    */
+    min-width: 60px;
+    height: 60px;
+    margin-left: 10px;
+    border-radius: 50%;
+    background-color: #fff;
+}
+
+/* 头像图片样式 */
+.portrait-image {
+    width: 80%;
+    height: 80%;
+    transform: translateY(7px);
+}
+
+/* 账户整体样式 */
+.account {
+    margin-left: 15px;
+    flex-basis: 100%;
+    color: #fff;
+}
+
+/* “登录/注册”样式 */
+.login-or-register {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 18px;
+    color: #fff;
+}
+
+/* 手机图标 */
+.phone-icon {
+    position: relative;
+    top: 2px;
+    font-size: 20px;
+}
+
+/* 注销按钮 */
+.logout-icon {
+    display: block;
+    margin-right: 18px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    transform: rotate(180deg);
+}

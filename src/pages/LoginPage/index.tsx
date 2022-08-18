@@ -9,7 +9,7 @@ import {
   selectData,
   selectMethod,
 } from "../../store/loginSlice";
-import Modal from "../../components/Dialog";
+import TheModal from "../../components/TheModal";
 
 // Message登录方式数据校验
 const messageDataValidator = (data: IMessageData): string | null => {
@@ -85,7 +85,9 @@ const LoginPage: React.FC = () => {
 
   return (
     <div className={styles.page}>
-      <i className={[styles.back, "iconfont"].join(" ")}>&#xea54;</i>
+      <NavLink to="/user">
+        <i className={[styles.back, "iconfont"].join(" ")}>&#xea54;</i>
+      </NavLink>
       <h1 className={styles.title}>硅谷外卖</h1>
       <LoginPanel />
       <button className={styles.button} onClick={checkLoginData}>
@@ -94,12 +96,12 @@ const LoginPage: React.FC = () => {
       <NavLink to="/user" className={styles.about}>
         关于我们
       </NavLink>
-      <Modal visible={visiable}>
+      <TheModal visible={visiable}>
         <div className={styles.message}>{message}</div>
         <button className={styles.retry} onClick={retry}>
           重试
         </button>
-      </Modal>
+      </TheModal>
     </div>
   );
 };

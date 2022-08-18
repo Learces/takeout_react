@@ -2,14 +2,14 @@ import * as React from "react";
 import { createPortal } from "react-dom";
 import styles from "./index.module.scss";
 
-interface ModalProps {
+interface TheModalProps {
   visible: boolean;
   children?: React.ReactNode;
   beforeWake?: Function;
   afterSleep?: Function;
 }
 
-const Modal: React.FC<ModalProps> = React.memo(props => {
+const TheModal: React.FC<TheModalProps> = React.memo(props => {
   React.useEffect(() => {
     if (props.visible) {
       props.beforeWake?.apply(null);
@@ -29,4 +29,4 @@ const Modal: React.FC<ModalProps> = React.memo(props => {
   );
 });
 
-export default Modal;
+export default TheModal;
