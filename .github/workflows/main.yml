@@ -1,0 +1,11 @@
+name: Release
+on:
+  push:
+    tags:
+      - v1.**
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set env
+        run: echo one
